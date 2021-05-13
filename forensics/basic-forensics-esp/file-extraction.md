@@ -1,6 +1,6 @@
 # File Extraction
 
-In some occasions \(a forensics or stego case\) you will have a file \(disk image,  memory dump, zip file, image...\) that **will have more files embedded on it** \(especial efforts may have made to hide them\). In these cases, there are a bunch of tools you can try to extract all of the embedded files.  
+In some occasions \(a forensics or stego case\) you will have a file \(disk image, memory dump, zip file, image...\) that **will have more files embedded on it** \(especial efforts may have made to hide them\). In these cases, there are a bunch of tools you can try to extract all of the embedded files.  
 **Remember that it's possible that each tools will uncover different files.**
 
 ## Extraction tools
@@ -59,7 +59,7 @@ Searches for AES keys by searching for their key schedules. Able to find 128. 19
 
 Download [here](https://sourceforge.net/projects/findaes/).
 
-## Complementary tools 
+## Complementary tools
 
 You can use [**viu** ](https://github.com/atanunq/viu)to see images form the terminal.  
 You can use the linux command line tool **pdftotext** to transform a pdf into text and read it.

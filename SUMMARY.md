@@ -1,13 +1,12 @@
 # Table of contents
 
-* [HackTricks](README.md)
-* [Getting Started in Hacking](getting-started-in-hacking.md)
+* [Start](README.md)
+* [Getting Started](getting-started-in-hacking.md)
 * [Pentesting Methodology](pentesting-methodology.md)
 * [External Recon Methodology](external-recon-methodology.md)
 * [Phishing Methodology](phishing-methodology/README.md)
   * [Detecting Phising](phishing-methodology/detecting-phising.md)
   * [Phishing Documents](phishing-methodology/phishing-documents.md)
-* [About the author](about-the-author.md)
 * [Exfiltration](exfiltration.md)
 * [Tunneling and Port Forwarding](tunneling-and-port-forwarding.md)
 * [Brute Force - CheatSheet](brute-force.md)

@@ -1,4 +1,4 @@
-# Getting Started in Hacking
+# Getting Started
 
 ## Learning by Practice
 

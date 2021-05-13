@@ -2,7 +2,7 @@
 
 ## USBrip
 
- **usbrip** is a small piece of software written in pure Python 3 which parses Linux log files \(`/var/log/syslog*` or `/var/log/messages*` depending on the distro\) for constructing USB event history tables.
+**usbrip** is a small piece of software written in pure Python 3 which parses Linux log files \(`/var/log/syslog*` or `/var/log/messages*` depending on the distro\) for constructing USB event history tables.
 
 It is interesting to know all the USBs that have been used and it will be more usefull if you have an authorized list of USB to find "violation events" \(the use of USBs that aren't inside that list\).
 

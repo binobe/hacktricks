@@ -1,6 +1,6 @@
 # Basic Forensics \(ESP\)
 
-*  **Collect**
+* **Collect**
 * **Preserve**
 * **Analyze**
 * **Present**
@@ -36,17 +36,17 @@ En linux cualquier cosa es un archivo. Por ejemplo la RAM es un archivo llamado 
 
 Toda la info obtenida de la máquina infectada NO debe ser guardada en la máquina sino enviada a otra con **netcat**
 
-### **MemoryDump**
+## **MemoryDump**
 
-####  **memdmp**
+### **memdmp**
 
- **Linux Memory Extractor \(LiME\)** —&gt; Kernel module —&gt; Descargar de git y hacer make —&gt; **insmod ./lime-3.13.0-44-generic.ko "path=/home/sansforensics/Desktop/mem\_dump.bin format=padded"** —&gt; Inserta el modulo en el kernel el cual puede ser visto con **lsmod** —&gt; **rmmod lime** —&gt; Para eliminarlo  
+**Linux Memory Extractor \(LiME\)** —&gt; Kernel module —&gt; Descargar de git y hacer make —&gt; **insmod ./lime-3.13.0-44-generic.ko "path=/home/sansforensics/Desktop/mem\_dump.bin format=padded"** —&gt; Inserta el modulo en el kernel el cual puede ser visto con **lsmod** —&gt; **rmmod lime** —&gt; Para eliminarlo  
 **strings -n 8 mem\_dump.bin** —&gt; Da todas las strings de tamaño igual o superior a 8  
 **Fmem** —&gt; Kernel Module  
 live response from **E-FENSE** —&gt; Insertar un USB y vas seleccionando los datos que quieres  
 **F-Response** —&gt; Remotely
 
-### **Copy Hard Drive**
+## **Copy Hard Drive**
 
 **DD —&gt;** Coge bloques de memoria, les aplica el cambio que necesita y los coloca en su sitio. Por defecto bloques de 512B
 
@@ -70,7 +70,7 @@ DD no checkea hashes, hay que hacerlo de forma manual
 
 [http://malwarefieldguide.com/LinuxChapter1.html](http://malwarefieldguide.com/LinuxChapter1.html)
 
-### **BOOT LINUX**
+## **BOOT LINUX**
 
 La MBR \(master boot record\) está en el sector 0, se crea al particionar el disco y es siempre de 512B. 446B son el boot code, 64B de la tabla de partición y 2B son de la firma \(55AA\).
 
@@ -84,19 +84,19 @@ EFI usa GUID \(globally unique identification\) compuesto por GPT\(puede tener h
 
 Linux usa EXT file system \(basado en el de UNIX\) . Un sistema con este particionado tiene un optional boot block y un superblock. El superblock define las estructuras de datos y los limites del sistema de ficheros. Contiene información de:
 
- Magic number
+Magic number
 
- Mount count and maximum mount count
+Mount count and maximum mount count
 
- block size \(4096B\) —&gt; Un bloque es la unidad mínima para guardar info
+block size \(4096B\) —&gt; Un bloque es la unidad mínima para guardar info
 
- INODE count y block count![](https://feelsec.info/wp-content/uploads/2019/01/Pasted-Graphic.jpg)
+INODE count y block count![](https://feelsec.info/wp-content/uploads/2019/01/Pasted-Graphic.jpg)
 
- number of free disk blocks
+number of free disk blocks
 
- number of free INODEs on the system
+number of free INODEs on the system
 
- first INODE —&gt; INODE number del first INODE en l file system \(en un EXT2,3,4 sería / del directorio\)
+first INODE —&gt; INODE number del first INODE en l file system \(en un EXT2,3,4 sería / del directorio\)
 
 Un INODE contiene metadata de un archivo \(uno o varios files tienen por lo menos un INODE\): tipo, dueño, permiso, tiempos \(ultima modif, aceso..\), links al file y data block addresses.
 
@@ -110,23 +110,23 @@ Cada archivo tiene su contenido almacenado en bloques, metadata en el INODE y el
 
 Cuando se elimina un archivo y el numero de Link-Count del INODE llega a 0 en EXT2:
 
- los data blocks del block bitmap son marcados como libres
+los data blocks del block bitmap son marcados como libres
 
- el INODE en el INODE bitmap se marca como libre
+el INODE en el INODE bitmap se marca como libre
 
- el deletion Time se pone en el INODE
+el deletion Time se pone en el INODE
 
- el directory entry se marca como unused
+el directory entry se marca como unused
 
- Las conexiones entre la entrada del directorio, INODE, y los data blocks seguirán ahí hasta que se sobreescriban.
+Las conexiones entre la entrada del directorio, INODE, y los data blocks seguirán ahí hasta que se sobreescriban.
 
 Como la informacion del directory entry aún está disponible, puedes encontrar la relacion entre el file name y su INODE.
 
 Cambios en EXT3 y 4:
 
- EL file size en el INODE se pone a 0
+EL file size en el INODE se pone a 0
 
- Los datos sobre los bloques son limpiados, por lo que no hay LINK entre INODE y los data blocks. Aun así, hay algunas formas de recuperar la info.
+Los datos sobre los bloques son limpiados, por lo que no hay LINK entre INODE y los data blocks. Aun así, hay algunas formas de recuperar la info.
 
 Los comandos **SRM** o **shred** borran intencionadamente el contenido.
 
@@ -134,26 +134,26 @@ Un Hard link tendrá el mismo INODE que el orginial por lo tanto comparten metad
 
 Un Soft link tendrá distinto INODE y solo guardará la información de a qué archivo apunta.
 
-|  **Directory** |  **Content** |
+| **Directory** | **Content** |
 | :--- | :--- |
-|  /bin |  Common programs, shared by the system, the system administrator and the users. |
-|  /boot |  The startup files and the kernel, vmlinuz. In some recent distributions also grub data. Grub is the GRand Unified Boot loader and is an attempt to get rid of the many different boot-loaders we know today. |
-|  /dev |  Contains references to all the CPU peripheral hardware, which are represented as files with special properties. |
-|  /etc |  Most important system configuration files are in /etc, this directory contains data similar to those in the Control Panel in Windows |
-|  /home |  Home directories of the common users. |
-|  /initrd |  \(on some distributions\) Information for booting. Do not remove! |
-|  /lib |  Library files, includes files for all kinds of programs needed by the system and the users. |
-|  /lost+found |  Every partition has a lost+found in its upper directory. Files that were saved during failures are here. |
-|  /misc |  For miscellaneous purposes. |
-|  /mnt |  Standard mount point for external file systems, e.g. a CD-ROM or a digital camera. |
-|  /net |  Standard mount point for entire remote file systems |
-|  /opt |  Typically contains extra and third party software. |
-|  /proc |  A virtual file system containing information about system resources. More information about the meaning of the files in proc is obtained by entering the command **man** _**proc**_ in a terminal window. The file proc.txt discusses the virtual file system in detail. |
-|  /root |  The administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the _root_ user. |
-|  /sbin |  Programs for use by the system and the system administrator. |
-|  /tmp |  Temporary space for use by the system, cleaned upon reboot, so don't use this for saving any work! |
-|  /usr |  Programs, libraries, documentation etc. for all user-related programs. |
-|  /var |  Storage for all variable files and temporary files created by users, such as log files, the mail queue, the print spooler area, space for temporary storage of files downloaded from the Internet, or to keep an image of a CD before burning it. |
+| /bin | Common programs, shared by the system, the system administrator and the users. |
+| /boot | The startup files and the kernel, vmlinuz. In some recent distributions also grub data. Grub is the GRand Unified Boot loader and is an attempt to get rid of the many different boot-loaders we know today. |
+| /dev | Contains references to all the CPU peripheral hardware, which are represented as files with special properties. |
+| /etc | Most important system configuration files are in /etc, this directory contains data similar to those in the Control Panel in Windows |
+| /home | Home directories of the common users. |
+| /initrd | \(on some distributions\) Information for booting. Do not remove! |
+| /lib | Library files, includes files for all kinds of programs needed by the system and the users. |
+| /lost+found | Every partition has a lost+found in its upper directory. Files that were saved during failures are here. |
+| /misc | For miscellaneous purposes. |
+| /mnt | Standard mount point for external file systems, e.g. a CD-ROM or a digital camera. |
+| /net | Standard mount point for entire remote file systems |
+| /opt | Typically contains extra and third party software. |
+| /proc | A virtual file system containing information about system resources. More information about the meaning of the files in proc is obtained by entering the command **man** _**proc**_ in a terminal window. The file proc.txt discusses the virtual file system in detail. |
+| /root | The administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the _root_ user. |
+| /sbin | Programs for use by the system and the system administrator. |
+| /tmp | Temporary space for use by the system, cleaned upon reboot, so don't use this for saving any work! |
+| /usr | Programs, libraries, documentation etc. for all user-related programs. |
+| /var | Storage for all variable files and temporary files created by users, such as log files, the mail queue, the print spooler area, space for temporary storage of files downloaded from the Internet, or to keep an image of a CD before burning it. |
 
 **Sleuthkit y Autopsy**
 
@@ -181,99 +181,99 @@ Data layer tools start with **BLK**
 
 Todos los comandos necesitan por lo menos el nombre de la imagen:
 
- **-f &lt;fs\_type&gt;** —&gt; EXT2,3 FAT12,16,32…
+**-f &lt;fs\_type&gt;** —&gt; EXT2,3 FAT12,16,32…
 
- **-o imgoffset** —&gt; Sector offset where the file system starts in the image
+**-o imgoffset** —&gt; Sector offset where the file system starts in the image
 
- **BLK —&gt;Block**
+**BLK —&gt;Block**
 
- **blkstat** —&gt; Muestra información del bloque \(como si está allocated\)
+**blkstat** —&gt; Muestra información del bloque \(como si está allocated\)
 
- **blkstat -f ext2 myImage.img 300** —&gt; Muestra info del bloque 300
+**blkstat -f ext2 myImage.img 300** —&gt; Muestra info del bloque 300
 
- **blkls** —&gt; Muestra toda la Unallocated Data \(útil para recuperar info\)
+**blkls** —&gt; Muestra toda la Unallocated Data \(útil para recuperar info\)
 
- **-e** —&gt; Lista todos los datos
+**-e** —&gt; Lista todos los datos
 
- **-s** —&gt; liste the slack \(ntfs o fat\)
+**-s** —&gt; liste the slack \(ntfs o fat\)
 
- **blkcat** —&gt; Muestra el contenido de un bloque
+**blkcat** —&gt; Muestra el contenido de un bloque
 
- **-h** -&gt; Para mostrarlo en hexadecimal
+**-h** -&gt; Para mostrarlo en hexadecimal
 
- **blkcat -f ext2 myImage.img 200** —&gt; Muestra lo que hay en el bloque 200
+**blkcat -f ext2 myImage.img 200** —&gt; Muestra lo que hay en el bloque 200
 
- I **—&gt; INODE\(Meta data\)**
+I **—&gt; INODE\(Meta data\)**
 
- **istat** —&gt; Info de un INODE: INODE number, mac time, permission, file size, allocation status o allocated data blocks number, number of links…
+**istat** —&gt; Info de un INODE: INODE number, mac time, permission, file size, allocation status o allocated data blocks number, number of links…
 
- **istat -f ext2 myImage.img INODENUMBER**
+**istat -f ext2 myImage.img INODENUMBER**
 
- **ifind** —&gt; De un block number a un INODE number. Si encuentras un bloque interesante así puedes encontrar los demás.
+**ifind** —&gt; De un block number a un INODE number. Si encuentras un bloque interesante así puedes encontrar los demás.
 
- **ifind -f ext2 -d DATABLOCKNUMBER myImage.img**
+**ifind -f ext2 -d DATABLOCKNUMBER myImage.img**
 
- **ils** —&gt; List all inodes and info. Included deleted files and unlinked but opened files
+**ils** —&gt; List all inodes and info. Included deleted files and unlinked but opened files
 
- Por defecto solo muestra los de archivos borrados
+Por defecto solo muestra los de archivos borrados
 
- **-e** —&gt; Muestra todos
+**-e** —&gt; Muestra todos
 
- **-m** —&gt; crea un archivo para MACTIME —&gt; Organiza el resultado y presenta un timeline de actividades. Pone un 127 al INODE si ela rchivo ha sido borrado.
+**-m** —&gt; crea un archivo para MACTIME —&gt; Organiza el resultado y presenta un timeline de actividades. Pone un 127 al INODE si ela rchivo ha sido borrado.
 
- **-o** —&gt; Open but no filename
+**-o** —&gt; Open but no filename
 
- **-z** —&gt; INODE with zero status time change \(never used\)
+**-z** —&gt; INODE with zero status time change \(never used\)
 
- **icat** —&gt; Dada la imagen sospechosa y el INODE, saca el contenido, puede recuperar archivos perdidos. Debemos encontrar el INODE number con ils.
+**icat** —&gt; Dada la imagen sospechosa y el INODE, saca el contenido, puede recuperar archivos perdidos. Debemos encontrar el INODE number con ils.
 
- **icat -f ext2 /image 20**
+**icat -f ext2 /image 20**
 
- **F —&gt; File name**
+**F —&gt; File name**
 
- **fls** —&gt; Lista los nombres y subdirs de un directorio. Por defecto los del root. Deleted files have a \* before them. Si el nombre fue sobreescrito, no lo encontrará, pero ILS sí.
+**fls** —&gt; Lista los nombres y subdirs de un directorio. Por defecto los del root. Deleted files have a \* before them. Si el nombre fue sobreescrito, no lo encontrará, pero ILS sí.
 
- **-a** —&gt; Display all
+**-a** —&gt; Display all
 
- **-d** —&gt; Deleted only
+**-d** —&gt; Deleted only
 
- **-u** —&gt; undeleted
+**-u** —&gt; undeleted
 
- **-D** —&gt; Directories
+**-D** —&gt; Directories
 
- **-F** —&gt; File entries only
+**-F** —&gt; File entries only
 
- **-r** —&gt; Recursive on subdirs
+**-r** —&gt; Recursive on subdirs
 
- **-p** —&gt; Full path
+**-p** —&gt; Full path
 
- **-m output** —&gt; TIMELINE format
+**-m output** —&gt; TIMELINE format
 
- **-l** —&gt; Long version information
+**-l** —&gt; Long version information
 
- **-s** —&gt; Skew in seconds combined with -l and/or -m
+**-s** —&gt; Skew in seconds combined with -l and/or -m
 
- **fls -r image 12**
+**fls -r image 12**
 
- **fls -f ext3 -m “/” -r imaes/root.dd**
+**fls -f ext3 -m “/” -r imaes/root.dd**
 
- **fls -o 2048 -f ext2 -m "/" -r '/home/sansforensics/Desktop/LinuxFinancialCase.001' &gt; flsBody**
+**fls -o 2048 -f ext2 -m "/" -r '/home/sansforensics/Desktop/LinuxFinancialCase.001' &gt; flsBody**
 
- **ffind** —&gt; Filename de un INODE. Busca por todas partes hasta encontrar a qué filename apunta el INODE
+**ffind** —&gt; Filename de un INODE. Busca por todas partes hasta encontrar a qué filename apunta el INODE
 
- **-a** —&gt; Coge todos los nombres que apuntan al INODE
+**-a** —&gt; Coge todos los nombres que apuntan al INODE
 
- **ffind -f ext2 myImage.img INODENUMBER**
+**ffind -f ext2 myImage.img INODENUMBER**
 
 **Mount -o ro,loop /my\_hda1.dd /mnt/hacked** —&gt; Siempre se debe montar con ro \(read only\), loop es por si lo que montas no es un disco sino un archivo \(una imagen por ejemplo\)
 
 **MACTIME:**
 
- **M** —&gt; Last time files data block changed \(Modification\)
+**M** —&gt; Last time files data block changed \(Modification\)
 
- **A** —&gt; Last time files data block accessed \(Access\)
+**A** —&gt; Last time files data block accessed \(Access\)
 
- **C** —&gt; Last time inodes content changed \(in windows, this is creation time\) \(Change time\)
+**C** —&gt; Last time inodes content changed \(in windows, this is creation time\) \(Change time\)
 
 **mactime -b FLSbodymac -d &gt; MACtimeFLS.csv**
 
@@ -285,9 +285,9 @@ Comando **stat** da los tres valores MAC del archivo.
 
 Conseguir el archivo en formato MACTIME
 
- **fls -f ext3 -m “/“ -r images/root.dd &gt; data/body**
+**fls -f ext3 -m “/“ -r images/root.dd &gt; data/body**
 
- **ils -f openbsd -m images/root.dd &gt; data/body**
+**ils -f openbsd -m images/root.dd &gt; data/body**
 
 Binary files modified in 1 day: **find /directory\_path -type f -a=x -mtime -1 -print**
 
@@ -353,61 +353,61 @@ Generate report
 
 System Information
 
- Processes information
+Processes information
 
- Network information
+Network information
 
- Logged on users
+Logged on users
 
- Clipboard contents
+Clipboard contents
 
- Command history - doskey/history
+Command history - doskey/history
 
- MACTime
+MACTime
 
 Comandos para obtener esta info:
 
- date /T; time /T
+date /T; time /T
 
- uptime
+uptime
 
- ipconfig
+ipconfig
 
- tasklist /svc
+tasklist /svc
 
- openfiles
+openfiles
 
- netstat
+netstat
 
 **Helix:**
 
 Primer apartado: Info del sistema
 
- Procesos corriendo
+Procesos corriendo
 
- Segundo apartado: Permite crear copias del disco y memoria, primero usando **dd** \(mejor usar os otros\)
+Segundo apartado: Permite crear copias del disco y memoria, primero usando **dd** \(mejor usar os otros\)
 
- En la segunda página usando **FTK imager**
+En la segunda página usando **FTK imager**
 
- Es la tercera página, RAM usando **Winen** o **MDD**
+Es la tercera página, RAM usando **Winen** o **MDD**
 
- Tercer apartado: Incident response
+Tercer apartado: Incident response
 
- Cuarto apartado: Navegación por el disco, no usar mucho porque cambian los tiempos de acceso
+Cuarto apartado: Navegación por el disco, no usar mucho porque cambian los tiempos de acceso
 
- Quinto apartado: Saca todas las imagenes
+Quinto apartado: Saca todas las imagenes
 
 **Volatility:**
 
- vol.py -f PATH\_IMAGE imageinfo —&gt; Primer plug-in a usar para obtener el so
+vol.py -f PATH\_IMAGE imageinfo —&gt; Primer plug-in a usar para obtener el so
 
- vol.py -f PATH\_IMAGE pslist —&gt; Procesos pslist no supera los rootkits pero psscan algunos sí
+vol.py -f PATH\_IMAGE pslist —&gt; Procesos pslist no supera los rootkits pero psscan algunos sí
 
- vol.py -f PATH\_IMAGE psscan —&gt; Comparar esta salida y la anterior para buscar rootkits
+vol.py -f PATH\_IMAGE psscan —&gt; Comparar esta salida y la anterior para buscar rootkits
 
- vol.py -f PATH\_IMAGE connscan —&gt; Conexiones, a partir de windows Vista se usa netscan
+vol.py -f PATH\_IMAGE connscan —&gt; Conexiones, a partir de windows Vista se usa netscan
 
- vol.py -f PATH\_IMAGE printkey -K “Microsoft\Windows NT\CurrentVersion\Winlogon” —&gt; procesos que escribieron en dicho registro
+vol.py -f PATH\_IMAGE printkey -K “Microsoft\Windows NT\CurrentVersion\Winlogon” —&gt; procesos que escribieron en dicho registro
 
 **Cold Boot Attack:**
 
@@ -417,11 +417,11 @@ Este ataque se basa en la posibilidad de que el delincuente ya accediese antes a
 
 El ataque cold boot consiste en que la memoria RAM no se elimina en cuanto se apaga el ordenador y si se le aplica frío puede durar varios minutos, de esta forma para intentar extraerla:
 
- 1\) Hacer que la BIOS inicie desde usb
+1\) Hacer que la BIOS inicie desde usb
 
- 2\) Conectar el USB especial \(scraper.bin\) que hace un copiado de la memoria
+2\) Conectar el USB especial \(scraper.bin\) que hace un copiado de la memoria
 
- 3\) El USB ha copiado la memoria
+3\) El USB ha copiado la memoria
 
 **High speed forensics imagers**
 
@@ -435,17 +435,17 @@ Windows filesystems: FAT12, FAT16, FAT32, exFAT, NTFS4, NTFS5 y ReFS
 
 Un sistema de ficheros FAT comienza con un BOOT RECORD seguido de una ALLOCATION TABLE, depués el ROOT DIRECTORY y finalmente el DATA AREA, el tamaño de un cluster es de 512B
 
- BOOT SECTOR:
+BOOT SECTOR:
 
- Primer setor de FAT12 o FAT16, o 3 primeros sectores de FAT32, define el volumen, el offset de las otras 3 áreas y contiene el boot program si es booteable
+Primer setor de FAT12 o FAT16, o 3 primeros sectores de FAT32, define el volumen, el offset de las otras 3 áreas y contiene el boot program si es booteable
 
- FAT \(File Allocation Table\):
+FAT \(File Allocation Table\):
 
- Es una tabla donde buscar qué cluster va a continuacion. Para localizar un archivo basta con saber la dirección del primer cluster y luego usando la FAT se localiza lo demás. FAT32 usa 32 bits para la dirección del cluster. Una dirección en la tabla guarda la dirección del siguiente cluster. Un cluster es el ultimo estara relleno de unos y si no se usa, de ceros. Un cluster malo tiene hex FFF7.
+Es una tabla donde buscar qué cluster va a continuacion. Para localizar un archivo basta con saber la dirección del primer cluster y luego usando la FAT se localiza lo demás. FAT32 usa 32 bits para la dirección del cluster. Una dirección en la tabla guarda la dirección del siguiente cluster. Un cluster es el ultimo estara relleno de unos y si no se usa, de ceros. Un cluster malo tiene hex FFF7.
 
- WINDOWS ROOT DIRECTORY:
+WINDOWS ROOT DIRECTORY:
 
- Un directorio contiene info del nombre y la extension, entry type, la dirección del primer cluster, the lens of the file y data time \(contiene toda esta info en 32bits\)
+Un directorio contiene info del nombre y la extension, entry type, la dirección del primer cluster, the lens of the file y data time \(contiene toda esta info en 32bits\)
 
 Cuando se elimina un archivo se cambia el primer byte del nombre por 0xE5 y se desalojan los clusters la ta tabla FAT.
 
@@ -455,33 +455,33 @@ Quick format: Pone a cero las entradas de root directory y file allocation table
 
 El tamaño de un cluster es de 64kB, aunque se pueden crear clusters mas pequeños o más grandes. 64bits para la dirección de cada cluster
 
- BOOT RECORD:
+BOOT RECORD:
 
- Puede usar hasta 16 sectores, tiene el cluster size, dirección de MFT\(master file table\), el mirror de MFT\(4 primeras entradas\) y el código si es booteable.
+Puede usar hasta 16 sectores, tiene el cluster size, dirección de MFT\(master file table\), el mirror de MFT\(4 primeras entradas\) y el código si es booteable.
 
- MASTER FILE TABLE \(se puede ver con EnCase\)
+MASTER FILE TABLE \(se puede ver con EnCase\)
 
- Su nombre comienza con $ y se crea cuando el NTFS es formateado. Cada archivo usa uno o mas MFT records para guardar info: $file record head\(MFT nº, link count, tipo de archivo, tamaño, etc\), $standard information, $filename, $data y $attribute.
+Su nombre comienza con $ y se crea cuando el NTFS es formateado. Cada archivo usa uno o mas MFT records para guardar info: $file record head\(MFT nº, link count, tipo de archivo, tamaño, etc\), $standard information, $filename, $data y $attribute.
 
- Si el metadata de un archivo es mayor que un MFT record, se usan mas.
+Si el metadata de un archivo es mayor que un MFT record, se usan mas.
 
- El primer archivo es $MFT
+El primer archivo es $MFT
 
- $BITMAP guarda el estado de cada cluster, si está usado vale 1, sino vale 0.
+$BITMAP guarda el estado de cada cluster, si está usado vale 1, sino vale 0.
 
 Cuando se elimina algo, el pone el cluster a 0 \(unallocated\) la entrada de $index es eliminada el MTF padre, pero no se borran los datos.
 
 **REGSTRO**
 
- Usuarios y contraseñas, e-mails, sitios de internet
+Usuarios y contraseñas, e-mails, sitios de internet
 
- Historial de navegación
+Historial de navegación
 
- Internet searches
+Internet searches
 
- Lista de archivos accedidos
+Lista de archivos accedidos
 
- Lista de programas instalados
+Lista de programas instalados
 
 Windows guarda el registro en archivos binarios llamados hives.
 
@@ -501,7 +501,7 @@ Cuando tienes una imagen puedes pasarle binwalk para saber qué esconde la image
 
 Si tienes una copia de la MFT:
 
- Con volatility puedes reconstruir la MFT e ir mirando todos los archivos que hay y su contenido en hex y ascii \(aunque son muchos pero está bien para buscar archivos extraños\) con: volatility -f mft.dd mftparser -N --output-file=mft.dd.vol.txt --&gt; Te da un archivo con texto cno todos los archivos que existen en dicha imagen
+Con volatility puedes reconstruir la MFT e ir mirando todos los archivos que hay y su contenido en hex y ascii \(aunque son muchos pero está bien para buscar archivos extraños\) con: volatility -f mft.dd mftparser -N --output-file=mft.dd.vol.txt --&gt; Te da un archivo con texto cno todos los archivos que existen en dicha imagen
 
 Borrado de datos: [https://github.com/Claudio-C/awesome-data-sanitization](https://github.com/Claudio-C/awesome-data-sanitization)
 

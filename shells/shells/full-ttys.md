@@ -2,7 +2,7 @@
 
 ## Full TTY
 
-Note that the shell you set in the `SHELL` variable **must** be **listed inside** _**/etc/shells**_ or `The value for the SHELL variable was not found the /etc/shells file   
+Note that the shell you set in the `SHELL` variable **must** be **listed inside** _**/etc/shells**_ or `The value for the SHELL variable was not found the /etc/shells file    
 This incident has been reported`.
 
 ```bash
@@ -12,7 +12,7 @@ python3 -c 'import pty; pty.spawn("/bin/bash")'
 
 ```bash
 script -qc /bin/bash /dev/null
-(inside the nc session) CTRL+Z;stty raw -echo; fg; ls; export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset; 
+(inside the nc session) CTRL+Z;stty raw -echo; fg; ls; export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset;
 ```
 
 ```bash

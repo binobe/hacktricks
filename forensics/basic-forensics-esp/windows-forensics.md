@@ -2,7 +2,7 @@
 
 ## Windows 10 Notifications
 
-In the path `\Users\<username>\AppData\Local\Microsoft\Windows\Notifications` you can find the database `appdb.dat` \(before Windows anniversary\)  or `wpndatabase.db` \(after Windows Anniversary\).
+In the path `\Users\<username>\AppData\Local\Microsoft\Windows\Notifications` you can find the database `appdb.dat` \(before Windows anniversary\) or `wpndatabase.db` \(after Windows Anniversary\).
 
 Inside this SQLite database you can find the `Notification` table with all the notifications \(in xml format\) that may contain interesting data.
 
@@ -10,7 +10,7 @@ Inside this SQLite database you can find the `Notification` table with all the n
 
 Timeline is a Windows characteristic that provides **chronological history** of web pages visited, edited documents, executed applications...  
 The database resides in the path `\Users\<username>\AppData\Local\ConnectedDevicesPlatform\<id>\ActivitiesCache.db`  
-This database can be open with a SQLite tool or with the tool [**WxTCmd**](https://github.com/EricZimmerman/WxTCmd) ****which generates 2 files that can be opened with the tool [**TimeLine Explorer**](https://ericzimmerman.github.io/#!index.md).
+This database can be open with a SQLite tool or with the tool [**WxTCmd**](https://github.com/EricZimmerman/WxTCmd) **\*\*which generates 2 files that can be opened with the tool \[**TimeLine Explorer\*\*\]\([https://ericzimmerman.github.io/\#!index.md](https://ericzimmerman.github.io/#!index.md)\).
 
 ## Windows RecentAPPs
 
@@ -30,7 +30,7 @@ The **metadata** of the emails and the **contacts** can be found inside the **ED
 
 ## Plug and Play Cleanup
 
-The 'Plug and Play Cleanup' scheduled task is responsible for **clearing** legacy versions of drivers. It would appear \(based upon reports online\) that it also picks up **drivers which have not been used in 30 days**, despite its description stating that "the most current version of each driver package will be kept". As such, **removable devices which have not been connected for 30 days may have their drivers removed**.   
+The 'Plug and Play Cleanup' scheduled task is responsible for **clearing** legacy versions of drivers. It would appear \(based upon reports online\) that it also picks up **drivers which have not been used in 30 days**, despite its description stating that "the most current version of each driver package will be kept". As such, **removable devices which have not been connected for 30 days may have their drivers removed**.  
 The scheduled task itself is located at ‘C:\Windows\System32\Tasks\Microsoft\Windows\Plug and Play\Plug and Play Cleanup’, and its content is displayed below:
 
 ![](https://2.bp.blogspot.com/-wqYubtuR_W8/W19bV5S9XyI/AAAAAAAANhU/OHsBDEvjqmg9ayzdNwJ4y2DKZnhCdwSMgCLcBGAs/s1600/xml.png)
@@ -143,12 +143,12 @@ The Windows Registry Contains a lot of **information** about the **system and th
 
 The files containing the registry are located in:
 
-* %windir%\System32\Config\**SAM**:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\**SECURITY**:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\**SYSTEM**:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\**SOFTWARE**:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\**DEFAULT**:  `HKEY_LOCAL_MACHINE`
-* %UserProfile%\{User}\**NTUSER.DAT**:  `HKEY_CURRENT_USER`
+* %windir%\System32\Config\*_SAM\*_:  `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_SECURITY\*_:  `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_SYSTEM\*_:  `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_SOFTWARE\*_:  `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_DEFAULT\*_:  `HKEY_LOCAL_MACHINE`
+* %UserProfile%{User}\*_NTUSER.DAT\*_:  `HKEY_CURRENT_USER`
 
 From Windows Vista and Windows 2008 Server upwards there are some backups of the `HKEY_LOCAL_MACHINE` registry files in **`%Windir%\System32\Config\RegBack\`**.  
 Also from these versions, the registry file **`%UserProfile%\{User}\AppData\Local\Microsoft\Windows\USERCLASS.DAT`** is created saving information about program executions.
