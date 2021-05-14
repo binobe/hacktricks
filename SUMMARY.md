@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Start](README.md)
+* [Machines](machines/README.md)
+  * [Hack The Box](machines/hack-the-box.md)
 * [Getting Started](getting-started-in-hacking.md)
 * [Pentesting Methodology](pentesting-methodology.md)
 * [External Recon Methodology](external-recon-methodology.md)
