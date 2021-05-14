@@ -1,8 +1,24 @@
 # Table of contents
 
 * [Start](README.md)
-* [Machines](machines/README.md)
-  * [Hack The Box](machines/hack-the-box.md)
+
+## Notes
+
+* [Machines](notes/machines/README.md)
+  * [Hack The Box](notes/machines/hack-the-box.md)
+* [Buffer Overflows](notes/buffer-overflows/README.md)
+  * [Tools](notes/buffer-overflows/tools.md)
+  * [Spiking](notes/buffer-overflows/spiking.md)
+  * [Fuzzing](notes/buffer-overflows/fuzzing.md)
+  * [Finding the offset](notes/buffer-overflows/finding-the-offset.md)
+  * [Overwriting the EIP](notes/buffer-overflows/overwriting-the-eip.md)
+  * [Finding Bad Characters](notes/buffer-overflows/finding-bad-characters.md)
+  * [Finding the right module](notes/buffer-overflows/finding-the-right-module.md)
+  * [Exploit!](notes/buffer-overflows/exploit.md)
+* [Active Directory](notes/active-directory.md)
+
+---
+
 * [Getting Started](getting-started-in-hacking.md)
 * [Pentesting Methodology](pentesting-methodology.md)
 * [External Recon Methodology](external-recon-methodology.md)
