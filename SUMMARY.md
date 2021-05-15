@@ -21,9 +21,11 @@
     * [Exploiting writable /etc/passwd](notes/linux-privilege-escalation/methods/exploiting-writable-etc-passwd.md)
     * [Expoiting Linux Binaries](notes/linux-privilege-escalation/methods/expoiting-linux-binaries.md)
     * [Exploiting CronTab](notes/linux-privilege-escalation/methods/exploiting-crontab.md)
+    * [Exploiting Path Variables](notes/linux-privilege-escalation/methods/exploiting-path-variables.md)
   * [Tools](notes/linux-privilege-escalation/tools/README.md)
     * [LinEnum](notes/linux-privilege-escalation/tools/linenum.md)
 * [Active Directory](notes/active-directory.md)
+* [Important Commands](notes/important-commands.md)
 
 ---
 
