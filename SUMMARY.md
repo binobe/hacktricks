@@ -15,6 +15,14 @@
   * [Finding Bad Characters](notes/buffer-overflows/finding-bad-characters.md)
   * [Finding the right module](notes/buffer-overflows/finding-the-right-module.md)
   * [Exploit!](notes/buffer-overflows/exploit.md)
+* [Linux Privilege Escalation](notes/linux-privilege-escalation/README.md)
+  * [Methods](notes/linux-privilege-escalation/methods/README.md)
+    * [SUID/SGID](notes/linux-privilege-escalation/methods/suid-sgid.md)
+    * [Exploiting writable /etc/passwd](notes/linux-privilege-escalation/methods/exploiting-writable-etc-passwd.md)
+    * [Expoiting Linux Binaries](notes/linux-privilege-escalation/methods/expoiting-linux-binaries.md)
+    * [Exploiting CronTab](notes/linux-privilege-escalation/methods/exploiting-crontab.md)
+  * [Tools](notes/linux-privilege-escalation/tools/README.md)
+    * [LinEnum](notes/linux-privilege-escalation/tools/linenum.md)
 * [Active Directory](notes/active-directory.md)
 
 ---
