@@ -28,6 +28,7 @@
     * [Expoiting Linux Binaries](notes/linux-privilege-escalation/methods/expoiting-linux-binaries.md)
     * [Exploiting CronTab](notes/linux-privilege-escalation/methods/exploiting-crontab.md)
     * [Exploiting Path Variables](notes/linux-privilege-escalation/methods/exploiting-path-variables.md)
+    * [Escalating via Capabilities](notes/linux-privilege-escalation/methods/escalating-via-capabilities.md)
   * [Tools](notes/linux-privilege-escalation/tools.md)
 * [Active Directory](notes/active-directory.md)
 * [Important Commands](notes/important-commands.md)
