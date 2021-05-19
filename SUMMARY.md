@@ -5,7 +5,10 @@
 ## Notes
 
 * [Machines](notes/machines/README.md)
-  * [Hack The Box](notes/machines/hack-the-box.md)
+  * [TryHackMe](notes/machines/tryhackme.md)
+  * [Hack The Box](notes/machines/hack-the-box/README.md)
+    * [Passage](notes/machines/hack-the-box/passage.md)
+    * [Time](notes/machines/hack-the-box/time.md)
 * [Buffer Overflows](notes/buffer-overflows/README.md)
   * [Tools](notes/buffer-overflows/tools.md)
   * [Spiking](notes/buffer-overflows/spiking.md)
