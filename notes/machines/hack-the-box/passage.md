@@ -17,11 +17,11 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 **Dirbuster Report**
 
-![](../../../.gitbook/assets/image%20%2872%29.png)
+![](../../../.gitbook/assets/image%20%2893%29.png)
 
 Cute News seems interesting.
 
-![](../../../.gitbook/assets/image%20%2856%29.png)
+![](../../../.gitbook/assets/image%20%2872%29.png)
 
 **CuteNews Version: 2.1.2**
 
@@ -118,7 +118,7 @@ cat /home/paul/user.txt
 cat /home/paul/.ssh/authorized_keys
 ```
 
-![](../../../.gitbook/assets/image%20%2839%29.png)
+![](../../../.gitbook/assets/image%20%2840%29.png)
 
 This key is for Nadav. Generating public key to access using Nadav's account.
 

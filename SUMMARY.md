@@ -7,6 +7,7 @@
 * [Machines](notes/machines/README.md)
   * [TryHackMe](notes/machines/tryhackme.md)
   * [Hack The Box](notes/machines/hack-the-box/README.md)
+    * [SneakyMailer](notes/machines/hack-the-box/sneakymailer.md)
     * [Passage](notes/machines/hack-the-box/passage.md)
     * [Time](notes/machines/hack-the-box/time.md)
 * [Buffer Overflows](notes/buffer-overflows/README.md)
