@@ -7,6 +7,7 @@
 * [Machines](notes/machines/README.md)
   * [TryHackMe](notes/machines/tryhackme.md)
   * [Hack The Box](notes/machines/hack-the-box/README.md)
+    * [Tabby](notes/machines/hack-the-box/tabby.md)
     * [SneakyMailer](notes/machines/hack-the-box/sneakymailer.md)
     * [Passage](notes/machines/hack-the-box/passage.md)
     * [Time](notes/machines/hack-the-box/time.md)
@@ -36,6 +37,8 @@
   * [Tools](notes/linux-privilege-escalation/tools.md)
 * [Active Directory](notes/active-directory.md)
 * [Important Commands](notes/important-commands.md)
+* [Tools](notes/tools/README.md)
+  * [SWAKS \(SMTP Tool\)](notes/tools/swaks-smtp-tool.md)
 
 ---
 
