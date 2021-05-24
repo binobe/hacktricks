@@ -38,6 +38,7 @@
 * [Active Directory](notes/active-directory.md)
 * [Important Commands](notes/important-commands.md)
 * [Tools](notes/tools/README.md)
+  * [Fcrackzip](notes/tools/fcrackzip.md)
   * [SWAKS \(SMTP Tool\)](notes/tools/swaks-smtp-tool.md)
 
 ---
