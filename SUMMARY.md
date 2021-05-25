@@ -34,6 +34,7 @@
     * [Exploiting CronTab](notes/linux-privilege-escalation/methods/exploiting-crontab.md)
     * [Exploiting Path Variables](notes/linux-privilege-escalation/methods/exploiting-path-variables.md)
     * [Escalating via Capabilities](notes/linux-privilege-escalation/methods/escalating-via-capabilities.md)
+    * [Sudo 1.8.27](notes/linux-privilege-escalation/methods/sudo-1.8.27.md)
   * [Tools](notes/linux-privilege-escalation/tools.md)
 * [Active Directory](notes/active-directory.md)
 * [Important Commands](notes/important-commands.md)
